@@ -23,7 +23,6 @@ public class Pea {
                 boolean exit = false;
                 if(z.health < 0){
                     System.out.println("ZOMBIE DIE");
-                    
                     gp.laneZombies.get(myLane).remove(i);
                     GamePanel.setProgress(10);
                     exit = true;

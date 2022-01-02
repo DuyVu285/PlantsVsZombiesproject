@@ -1,22 +1,11 @@
-
-import javax.swing.*;
-
-public class Zombie {
-
-    public int health = 1000;
-    public int speed = 1;
-
-    protected GamePanel gp;
-
-    public int posX = 1000;
-    public int myLane;
-    public boolean isMoving = true;
-
-    public Zombie(GamePanel parent,int lane){
-        this.gp = parent;
-        myLane = lane;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+public class NewspaperZombie extends Zombie {
+    public NewspaperZombie(GamePanel parent,int lane){
+        super(parent,lane);
+        health = 2000;
     }
-
+    @Override
     public void advance(){
         if(isMoving) {
             boolean isCollides = false;
@@ -34,7 +23,14 @@ public class Zombie {
                     }
                     slowInt--;
                 }else {
+                    if(health>1000){
                     posX -= 1;
+                    }
+                    else if(health<=1000)
+                    {
+                        posX -= 5;
+                    }
+
                 }
             } else {
                 collided.assignedPlant.health -= 10;
@@ -51,24 +47,4 @@ public class Zombie {
             }
         }
     }
-
-    int slowInt = 0;
-    public void slow(){
-        slowInt = 1000;
-    }
-    public static Zombie getZombie(String type,GamePanel parent, int lane) {
-        Zombie z = new Zombie(parent,lane);
-       switch(type) {
-           case "NormalZombie" : z = new NormalZombie(parent,lane);
-                                 break;
-           case "ConeHeadZombie" : z = new ConeHeadZombie(parent,lane);
-                                 break;
-           case "NewspaperZombie" : z = new NewspaperZombie(parent,lane);
-                                 break;  
-           case "BucketZombie" : z = new BucketZombie(parent,lane);
-                                 break;                             
-    }
-       return z;
-    }
-
 }

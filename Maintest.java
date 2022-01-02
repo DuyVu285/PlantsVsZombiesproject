@@ -8,7 +8,10 @@ public class Maintest extends JFrame {
         None,
         Sunflower,
         Peashooter,
-        FreezePeashooter
+        FreezePeashooter,
+        Nut,
+        Cherry, 
+        Threepeater, Repeater
     }
 
     public Maintest(){
@@ -45,7 +48,19 @@ public class Maintest extends JFrame {
         });
         getLayeredPane().add(freezepeashooter,Integer.valueOf(3));
 
+        PlantCard nut = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_wallnut.png")).getImage());
+        nut.setLocation(305,8);
+        nut.setAction((ActionEvent e) -> {
+            gp.activePlantingBrush = PlantType.Nut;
+        });
+        getLayeredPane().add(nut,Integer.valueOf(3));
 
+        PlantCard repeater = new PlantCard(new ImageIcon(this.getClass().getResource("images/cards/card_repeater.png")).getImage());
+        repeater.setLocation(370,8);
+        repeater.setAction((ActionEvent e) -> {
+            gp.activePlantingBrush = PlantType.Repeater;
+        });
+        getLayeredPane().add(repeater,Integer.valueOf(3));
 
         getLayeredPane().add(sun,Integer.valueOf(2));
         setResizable(false);

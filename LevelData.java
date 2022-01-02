@@ -4,8 +4,8 @@ import java.util.logging.Logger;
 
 public class LevelData {
     static String Lvl = "1";
-   static String [][] Level = {{"NormalZombie"},{"NormalZombie","ConeHeadZombie"}};
-   static int [][][] LevelValue = {{{0,99}},{{0,49},{50,99}}} ;
+   static String [][] Level = {{"NormalZombie","ConeHeadZombie","NewspaperZombie","BucketZombie"},{"NormalZombie","ConeHeadZombie","NewspaperZombie","BucketZombie"}};
+   static int [][][] LevelValue = {{{0,25},{26,50},{51,75},{76,99}},{{0,25},{26,50},{51,75},{76,99}}} ;
    public LevelData() {
        try {
            File f = new File("Level.vbhv");
