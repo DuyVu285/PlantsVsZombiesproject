@@ -16,7 +16,11 @@ public class Collider extends JPanel implements MouseListener {
     }
 
     public Plant assignedPlant;
-
+    public String getPlantName()
+    {
+        String name = String.valueOf(assignedPlant);
+        return name;
+    }
     public void setPlant(Plant p){
         assignedPlant = p;
     }

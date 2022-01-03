@@ -40,6 +40,14 @@ public class Zombie {
                 collided.assignedPlant.health -= 10;
                 if (collided.assignedPlant.health < 0) {
                     collided.removePlant();
+                    if(collided.getPlantName() == "Nut" )
+                    {
+                        GamePanel.lanePlantNut[myLane] -=1;
+                    }
+                    if(collided.getPlantName() == "Sunflower" )
+                    {
+                        GamePanel.lanePlantSun[myLane] -=1;
+                    }
                 }
             }
             if (posX < 0) {

@@ -29,8 +29,16 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     ArrayList<ArrayList<Zombie>> laneZombies;
     ArrayList<ArrayList<Pea>> lanePeas;
     ArrayList<ArrayList<Rollingnut>> laneNuts;
-    int [] lanePlantNut = new int[10000];
-    int [] lanePlantSun = new int[10000];
+    static int [] lanePlantNut = new int[5];
+    static int [] lanePlantSun = new int[5];
+    public void fill()
+    {
+    for (int i = 0;i<5;i++)
+    {
+        lanePlantNut[i]=0;
+        lanePlantSun[i]=0;
+    }
+    }
 
     ArrayList<Sun> activeSuns;
 
@@ -247,7 +255,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if(getSunScore()>=50) {
                     colliders[x + y * 9].setPlant(new Sunflower(GamePanel.this, x, y));
                     setSunScore(getSunScore()-50);
-                    lanePlantSun[y] = 1;
+                    lanePlantSun[y] += 1;
                 }
             }
             if(activePlantingBrush == Maintest.PlantType.Peashooter){
@@ -267,7 +275,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if(getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Nut(GamePanel.this, x, y));
                     setSunScore(getSunScore()-50);
-                    lanePlantNut[y] =1;
+                    lanePlantNut[y] +=1;
                 }
             }
             if(activePlantingBrush == Maintest.PlantType.Repeater){
