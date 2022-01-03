@@ -28,6 +28,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     
     ArrayList<ArrayList<Zombie>> laneZombies;
     ArrayList<ArrayList<Pea>> lanePeas;
+    ArrayList<ArrayList<Rollingnut>> laneNuts;
     ArrayList<Sun> activeSuns;
 
     Timer redrawTimer;
@@ -87,6 +88,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         lanePeas.add(new ArrayList<>()); //line 4
         lanePeas.add(new ArrayList<>()); //line 5
 
+        laneNuts = new ArrayList<>();
+        laneNuts.add(new ArrayList<>()); //line 1
+        laneNuts.add(new ArrayList<>()); //line 2
+        laneNuts.add(new ArrayList<>()); //line 3
+        laneNuts.add(new ArrayList<>()); //line 4
+        laneNuts.add(new ArrayList<>()); //line 5
+
         colliders = new Collider[45];
         for (int i = 0; i < 45; i++) {
             Collider a = new Collider();
@@ -144,7 +152,10 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 Pea p = lanePeas.get(i).get(j);
                 p.advance();
             }
-
+            for (int j = 0; j < laneNuts.get(i).size(); j++) {
+                Rollingnut n = laneNuts.get(i).get(j);
+                n.advance();
+            }
         }
 
         for (int i = 0; i < activeSuns.size() ; i++) {
@@ -204,11 +215,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     g.drawImage(peaImage, p.posX, 130 + (i * 120), null);
                 }
             }
-
+            for (int j = 0; j < laneNuts.get(i).size(); j++) {
+                Rollingnut n = laneNuts.get(i).get(j);
+                if(n instanceof Rollingnut){
+                    g.drawImage(nutImage, n.posX, 130 + (i * 120), null);
+                }
+            }
         }
-
-
-
     }
 
     class PlantActionListener implements ActionListener {
