@@ -29,6 +29,9 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
     ArrayList<ArrayList<Zombie>> laneZombies;
     ArrayList<ArrayList<Pea>> lanePeas;
     ArrayList<ArrayList<Rollingnut>> laneNuts;
+    int [] lanePlantNut = new int[10000];
+    int [] lanePlantSun = new int[10000];
+
     ArrayList<Sun> activeSuns;
 
     Timer redrawTimer;
@@ -104,7 +107,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             add(a,0);
         }
 
-
         activeSuns = new ArrayList<>();
 
         redrawTimer = new Timer(25,(ActionEvent e) -> {
@@ -173,6 +175,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
         for (int i = 0; i < 45; i++) {
             Collider c = colliders[i];
             if(c.assignedPlant != null){
+    
                 Plant p = c.assignedPlant;
                 if(p instanceof Peashooter){
                     g.drawImage(peashooterImage,60 + (i%9)*100,129 + (i/9)*120,null);
@@ -191,7 +194,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 }
             }
         }
-
         for (int i = 0; i < 5 ; i++) {
             for(Zombie z : laneZombies.get(i)){
                 if(z instanceof NormalZombie){
@@ -206,6 +208,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                     g.drawImage(newspaperZombieImage,z.posX,109+(i*120),null);
                 }
             }
+
 
             for (int j = 0; j < lanePeas.get(i).size(); j++) {
                 Pea p = lanePeas.get(i).get(j);
@@ -232,13 +235,19 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
             this.x = x;
             this.y = y;
         }
-
+        public int getX() {
+            return x;
+        }
+        public int getY() {
+            return y;
+        }
         @Override
         public void actionPerformed(ActionEvent e) {
             if(activePlantingBrush == Maintest.PlantType.Sunflower){
                 if(getSunScore()>=50) {
                     colliders[x + y * 9].setPlant(new Sunflower(GamePanel.this, x, y));
                     setSunScore(getSunScore()-50);
+                    lanePlantSun[y] = 1;
                 }
             }
             if(activePlantingBrush == Maintest.PlantType.Peashooter){
@@ -258,6 +267,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
                 if(getSunScore() >= 50) {
                     colliders[x + y * 9].setPlant(new Nut(GamePanel.this, x, y));
                     setSunScore(getSunScore()-50);
+                    lanePlantNut[y] =1;
                 }
             }
             if(activePlantingBrush == Maintest.PlantType.Repeater){

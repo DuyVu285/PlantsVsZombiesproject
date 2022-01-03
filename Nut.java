@@ -5,7 +5,7 @@ public class Nut extends Plant{
     public Nut(GamePanel parent, int x, int y) {
         super(parent, x, y);
         health = 2000;
-        rollTimer = new Timer(20,(ActionEvent e) -> { 
+        rollTimer = new Timer(10,(ActionEvent e) -> { 
             if(gp.laneZombies.get(y).size() > 0) {
                 if (health < 10)
                 {
